@@ -48,3 +48,30 @@
   color: #f1356d;
   margin-bottom: 8px;
 }
+
+
+/* Loading image */
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between image and text */
+}
+
+.loading img {
+  width: 25px; 
+  height: 25px;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Clockwise rotation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
