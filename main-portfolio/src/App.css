@@ -1,42 +1,194 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root{
+  /* Colors */
+  --bg: #1b1b1b;
+  --grey-bg:#2c2c2c;
+  --surface: #f7f7f8;
+  --text: #f1f1f1;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --primary-600: #1e40af;
+  --danger: #ef4444;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --base-size: 16px;
+  --radius: 8px;
+  --max-content-width: 1100px;
+  --transition: 180ms ease;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Box sizing & sensible defaults */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-size: var(--base-size); }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Remove native margins */
+h1,h2,h3,h4,h5,h6,p,figure,blockquote,dl,dd { margin: 0; }
+
+/* Images & media */
+img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
+
+/* Links & buttons */
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: none; }
+
+button { font: inherit; color: inherit; background: none; border: none; padding: 0; cursor: pointer; }
+
+/* Focus-visible for accessibility */
+:focus { outline: none; }
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
-.card {
-  padding: 2em;
+/* Namespaced App container & layout helpers (avoid Bootstrap conflicts) */
+.ui-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+  max-width: var(--max-content-width);
 }
 
-.read-the-docs {
-  color: #888;
+/* Responsive container breakpoints */
+@media (min-width: 640px) { .ui-container { padding-left: var(--space-5); padding-right: var(--space-5); } }
+@media (min-width: 1024px) { .ui-container { padding-left: var(--space-6); padding-right: var(--space-6); } }
+
+/* Grid & flex utilities (namespaced) */
+.ui-row { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+.ui-col { flex: 1 1 0%; min-width: 0; }
+.ui-grid { display: grid; gap: var(--space-4); }
+.ui-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.ui-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+.ui-center { display: flex; align-items: center; justify-content: center; }
+.ui-stack { display: flex; flex-direction: column; gap: var(--space-3); }
+
+/* Typography scale */
+h1 { font-size: 2rem; line-height: 1.1; font-weight: 700; }
+h2 { font-size: 1.5rem; line-height: 1.2; font-weight: 600; }
+h3 { font-size: 1.25rem; font-weight: 600; }
+p { margin-top: var(--space-2); margin-bottom: var(--space-2); color: var(--muted); }
+
+/* Cards & surfaces (namespaced) */
+.ui-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  box-shadow: 0 1px 2px rgba(16,24,40,0.04);
 }
+
+.card-dark {
+  background-color: var(--grey-bg);
+  color: #f1f1f1;
+  border-radius: 12px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+/* Buttons (namespaced) */
+.ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: calc(var(--space-2)) var(--space-4);
+  border-radius: 6px;
+  transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition);
+  user-select: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ui-btn:active { transform: translateY(1px); }
+
+.ui-btn-primary {
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(37,99,235,0.12);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.ui-btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(17,24,39,0.06);
+  color: var(--text);
+}
+
+/* Form elements */
+input[type="text"], input[type="email"], input[type="password"], textarea, select {
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid rgba(17,24,39,0.08);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: color-mix(in srgb, var(--primary) 60%, transparent);
+  box-shadow: 0 6px 18px rgba(37,99,235,0.08);
+  outline: none;
+}
+
+/* Small helpers (namespaced) */
+.ui-kicker { display: inline-block; font-size: 0.75rem; color: var(--primary); font-weight: 600; letter-spacing: 0.04em; }
+.ui-lead { font-size: 1.125rem; color: var(--text); }
+
+.ui-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: var(--space-3); border-bottom: 1px solid rgba(17,24,39,0.04); }
+
+/* Utility spacing (namespaced to avoid Bootstrap's mt-*) */
+.ui-mt-1 { margin-top: var(--space-1); } .ui-mt-2 { margin-top: var(--space-2); } .ui-mt-3 { margin-top: var(--space-3); }
+.ui-mb-1 { margin-bottom: var(--space-1); } .ui-mb-2 { margin-bottom: var(--space-2); } .ui-mb-3 { margin-bottom: var(--space-3); }
+
+/* Small responsive tweaks */
+@media (max-width: 640px) {
+  .ui-grid-cols-2, .ui-grid-cols-3 { grid-template-columns: 1fr; }
+  h1 { font-size: 1.5rem; }
+}
+
+/* Utility to reset list styles */
+.ui-list-reset { list-style: none; padding: 0; margin: 0; }
+
+/* Minimal animation utility (namespaced) */
+.ui-fade-in { animation: ui-fadeIn .28s ease both; }
+@keyframes ui-fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+
+
+
+
